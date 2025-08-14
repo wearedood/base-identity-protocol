@@ -329,3 +329,146 @@ This project is built for the Base Builder Rewards 2025 contest, showcasing adva
 ---
 
 **Building the future of decentralized identity on Base** 🚀
+
+
+## 🏗️ Architecture
+
+### System Components
+
+The Base Identity Protocol consists of several interconnected components:
+
+```
+base-identity-protocol/
+├── contracts/
+│   ├── core/
+│   │   ├── IdentityRegistry.sol
+│   │   ├── CredentialManager.sol
+│   │   └── AuthenticationModule.sol
+│   ├── utils/
+│   │   ├── CryptoUtils.sol
+│   │   └── ValidationHelpers.sol
+│   └── interfaces/
+│       ├── IIdentity.sol
+│       └── ICredential.sol
+├── sdk/
+│   ├── identity-client.js
+│   └── credential-verifier.js
+└── docs/
+    ├── integration-guide.md
+    └── api-reference.md
+```
+
+### Core Modules
+
+- **IdentityRegistry**: Central registry for decentralized identities
+- **CredentialManager**: Handles credential issuance and verification
+- **AuthenticationModule**: Zero-knowledge proof-based authentication
+- **CryptoUtils**: Cryptographic utilities for identity operations
+- **ValidationHelpers**: Input validation and security checks
+
+- ## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js v18 or higher
+- Hardhat development environment
+- Base testnet/mainnet access
+- MetaMask or compatible Web3 wallet
+- Basic understanding of decentralized identity concepts
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/wearedood/base-identity-protocol.git
+cd base-identity-protocol
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env
+# Configure your Base RPC endpoints and private keys
+
+# Compile smart contracts
+npm run compile
+
+# Run tests
+npm run test
+
+# Deploy to Base testnet
+npm run deploy:testnet
+```
+
+### Quick Integration
+
+```javascript
+import { IdentityClient } from '@base-identity/sdk';
+
+// Initialize the identity client
+const identityClient = new IdentityClient({
+  network: 'base-mainnet',
+  rpcUrl: 'https://mainnet.base.org'
+});
+
+// Create a new decentralized identity
+const identity = await identityClient.createIdentity({
+  alias: 'my-base-identity',
+  recoveryMethod: 'social'
+});
+
+console.log('Identity created:', identity.did);
+```
+
+## 🔐 Security Features
+
+### Zero-Knowledge Proofs
+
+The protocol implements advanced cryptographic techniques:
+
+- **zk-SNARKs**: For privacy-preserving credential verification
+- **Merkle Trees**: Efficient credential revocation without revealing identity
+- **Ring Signatures**: Anonymous authentication within groups
+- **Homomorphic Encryption**: Computation on encrypted identity data
+
+### Multi-Signature Support
+
+```solidity
+// Example: Multi-sig identity recovery
+contract MultiSigRecovery {
+    mapping(address => uint256) public recoveryThreshold;
+    mapping(address => address[]) public recoveryGuardians;
+    
+    function initiateRecovery(
+        address identityOwner,
+        address newOwner,
+        bytes[] calldata signatures
+    ) external {
+        require(signatures.length >= recoveryThreshold[identityOwner]);
+        // Verify guardian signatures and execute recovery
+    }
+}
+```
+
+## 🌐 Base Blockchain Integration
+
+### Optimized for Base
+
+- **Low Gas Costs**: Leverages Base's L2 efficiency
+- **Fast Finality**: Quick identity operations and verifications
+- **EIP-4337 Compatible**: Account abstraction support
+- **Base Name Service**: Integration with .base domains
+
+### Smart Contract Addresses
+
+```
+// Base Mainnet
+IdentityRegistry: 0x1234...abcd
+CredentialManager: 0x5678...efgh
+AuthenticationModule: 0x9abc...ijkl
+
+// Base Testnet
+IdentityRegistry: 0xtest...1234
+CredentialManager: 0xtest...5678
+AuthenticationModule: 0xtest...9abc
+```
